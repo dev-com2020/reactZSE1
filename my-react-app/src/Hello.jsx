@@ -1,15 +1,18 @@
-// import * as ReactDOM from "react-dom"
+import MyButton from "./MyButton"
 
 function Hello() {
+    const appState = {
+        text: "KLIKNIJ",
+        disabled: false,
+        color: "red"
+      }
     return (
-
-        
             <>
-                <p>
-                    Witaj, <strong>React z JSX</strong>
-                </p>
+            <p>Tu jest nowy przycisk</p>
+                <MyButton text={appState.text} 
+                disabled={appState.disabled}
+                color={appState.color}></MyButton>
             </>
-        
     )
 }
 export default Hello

@@ -1,19 +1,42 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
+import MyButton from './MyButton'
+import * as React from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const appState = {
+    text: "My button",
+    disabled: false,
+    color: "green"
+  }
+
+  const [name, setName] = React.useState("loading...")
+  const [age, setAge] = React.useState("loading...")
+
+  const fetchUser = React.useCallback(() => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({name: "Tomek", age: 41})
+      }, 2000)
+    })
+  },[])
+  React.useEffect(() => {
+    fetchUser().then((user) => {
+      setName(user.name)
+      setAge(user.age)
+    })
+  })
 
   return (
     <>
-      <h1>Pierwsza aplikacja React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+    {/* <MyButton text={appState.text} disabled={appState.disabled}
+    color={appState.color}></MyButton> */}
+    
+    <input value={name} onChange={(e) => setName(e.target.value)}/>
+    <input type='number' value={age} onChange={(e) => setAge(e.target.value)}/>
+
+    <MyButton text={appState.text} disabled={appState.disabled}></MyButton>
+    <p>Witaj {name}</p>
+    <p>Masz {age} lat</p>
     </>
   )
 }
