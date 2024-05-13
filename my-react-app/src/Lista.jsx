@@ -1,15 +1,15 @@
 // import * as ReactDOM from "react-dom"
 
-function Hello() {
+function Lista() {
     return (
 
         
             <>
                 <p>
-                    Witaj, <strong>React z JSX</strong>
+                    Jestem z listy 👏
                 </p>
             </>
         
     )
 }
-export default Hello
+export default Lista
