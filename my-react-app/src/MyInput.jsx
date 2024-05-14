@@ -6,8 +6,16 @@ function MyInput() {
     const [blurMessage, setBlurMessage] = React.useState('')
     const [inputClass, setInputClass] = React.useState('')
     const [showImage, setShowImage] = React.useState(false)
+    const [inputValue, setInputValue] = React.useState('')
 
-    const onChange = () => {
+    const onChange = (event) => {
+        const value = event.target.value
+        setInputValue(value)
+        if (value === 'obraz'){
+            setShowImage(true)
+        } else {
+            setShowImage(false)
+        }
         setChangeMessage('zmiana!')
     }
     const onBlur = () => {
@@ -19,11 +27,12 @@ function MyInput() {
         setShowImage(true)
     } 
     return (<>
-    <input 
+    <br/><input 
     onChange={onChange} 
     onBlur={onBlur} 
     className={inputClass}
-    onFocus={onFocus}/>
+    onFocus={onFocus}
+    value={inputValue}/><br/>
     {showImage && <img src="https://picsum.photos/200"/>}
     <p>{changeMessage}</p>
     <p>{blurMessage}</p>
